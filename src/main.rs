@@ -109,8 +109,8 @@ const HTML: &str = r#"<!DOCTYPE html>
   <h2>Input Server</h2>
   <textarea id="text" placeholder="在此输入要发送的文字…"></textarea>
   <div class="buttons">
-    <button id="send-btn"  onclick="sendText()">发送</button>
     <button id="clear-btn" onclick="clearText()">清空</button>
+    <button id="send-btn"  onclick="sendText()">发送</button>
   </div>
   <div id="status"></div>
   <script>
