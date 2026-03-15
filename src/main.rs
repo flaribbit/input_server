@@ -78,6 +78,17 @@ struct TypeRequest {
 
 async fn handle_type(Json(req): Json<TypeRequest>) -> &'static str {
     send_text(&req.text);
+    let Ok(mut file) = std::fs::OpenOptions::new()
+        .create(true)
+        .append(true)
+        .open("history.txt")
+    else {
+        eprintln!("Failed to open history.txt");
+        return "ok";
+    };
+    if let Err(e) = std::io::Write::write_all(&mut file, format!("{}\n\n", req.text).as_bytes()) {
+        eprintln!("Failed to write to history.txt: {}", e);
+    }
     "ok"
 }
 
